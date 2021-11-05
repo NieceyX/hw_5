@@ -26,15 +26,7 @@ void print(std::string preCur, auto items) {
 }
 
 void checkFiles(std::vector<std::string> r) {
-    /*currently only checking for present files
-        will need to:
-            check for extra files
-            know which files are missing
-    */
-    std::vector<std::string> present;
-    std::vector<std::string> missing;
-    std::vector<std::string> extra;
-    std::vector<std::string> junk;
+    std::vector<std::string> present, missing, extra, junk;
     for(auto const& dir_entry: fs::directory_iterator{dir}){
         std::string item = dir_entry.path().string();
         item = item.erase(0, dir.size());
@@ -51,8 +43,7 @@ void checkFiles(std::vector<std::string> r) {
     }
     print("Present files:", present);
     print("Missing files:", missing);
-    print("Extra files:", extra);
-    
+    print("Extra files:", extra); 
 }
 
 
