@@ -2,16 +2,19 @@
 #include <filesystem>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 //must compile in c++20
 //  g++ -std=c++20 hw_5.cpp
 
+using std::filesystem::exists;
+
 namespace fs = std::filesystem;
 //sets folder to look into
 std::string dir = "stuFolder/";
+
 //vector of files we want to have
 std::vector<std::string> reqFiles = {"test.txt", "hello.cpp"};
-
 
 void printErr(std::string error) {
     std::cout << "\nERROR:\n" << "\t" << error  << "\n" << std::endl;
@@ -33,12 +36,23 @@ void checkFiles(std::vector<std::string> r) {
     std::vector<std::string> present;
     std::vector<std::string> missing;
     std::vector<std::string> extra;
-    for(auto file : r) {
-        if(fs::exists(dir + file)) {
-            present.push_back(file);
-        }
+    
+    if(){
+    // FIXME if file exits run for loop else go to else block and add to extra
+    	for (const auto &file : r){
+	    	exists(file) ? present.push_back(file) : missing.push_back(file);
+	    
+    	}
+    }else{
+	    extra.push_back(file);
     }
-    print("Present files:", present);
+    
+
+    print("\tPresent files:", present);
+
+    print("\tMissing files:", missing);
+    
+    print("\tExtra files:", extra);
 }
 
 
