@@ -9,7 +9,8 @@
 
 namespace fs = std::filesystem;
 //sets folder to look into
-std::string dir = "stuFolder/";
+std::string dir;
+
 //vector of files we want to have
 std::vector<std::string> reqFiles = {"test.txt", "hello.cpp"};
 
@@ -48,9 +49,15 @@ void checkFiles(std::vector<std::string> r) {
 
 
 int main() {
-    std::cout << "\tChecking for files....\n";
+    std::cout << "Enter Directory: ";
     
-    checkFiles(reqFiles);
+    std::cin >> dir;
+    dir = dir + "/";
+    
+    std::cout << "\tChecking for files....\n";
+
+    fs::exists(dir) ? checkFiles(reqFiles) : printErr(dir + " DOES NOT EXIST!");
+    
 
     std::cout << "\tDone!" << std::endl;
     return 0;
